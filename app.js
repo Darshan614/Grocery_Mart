@@ -2,10 +2,12 @@ const path = require('path');
 const express=require('express');//here require is provided by nodejs and not JS
 //int the above line a function is exported from express which we take in variable express
 const bodyParser = require('body-parser');
+
 const mongoose = require('mongoose');
 const app = express();  //express() function is called which returns object
 const shopRoutes=require('./routes/shop');
 const authRoutes=require('./routes/auth');
+
 app.set('view engine','ejs');
 app.set('views','views');
 app.use(bodyParser.urlencoded({extended:false}));

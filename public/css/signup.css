@@ -37,3 +37,20 @@
   button{
     margin-bottom: 15px;
   }
+  .user-message{
+	margin:auto;
+	width:50%;
+	border:1px solid blue;
+	background:greenyellow;
+	border-radius:3px;
+	padding: 1rem;
+	text-align:center;
+}
+.user-message--error{
+	border-color:red;
+	background:#6df731;
+}
+.invalid{
+  border-color:red;
+}
+

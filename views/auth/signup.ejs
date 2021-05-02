@@ -9,6 +9,13 @@
     <body>
         <div><%- include('../includes/navigation.ejs')%></div>
         <div>
+        
+          <% if (errormessage) { %>
+            <div class="user-message user-message--error">
+              <%= errormessage %> 
+            </div>
+          <% } %>
+
         <form action="/signup" method="POST" class="form-signin text-center">
       <img class="mb-4" src="/images/greenstore.jpg" height="15%">
       <h1 class="h3 mb-3 font-weight-normal">SignUp</h1>
@@ -17,12 +24,12 @@
       <label for="City" class="sr-only">City</label>
       <input name="address" type="text" id="City" class="form-control" placeholder="Address" required>
       <label for="City" class="sr-only">City</label>
-      <input name="mobile" type="text" id="City" class="form-control" placeholder="Mobile Number (optional)" >
+      <input name="mobile" type="text" id="City" class="<%= validationErrors.find(e=>e.param=='mobile')?'invalid form-control':'form-control' %>" placeholder="Mobile Number (optional)" >
       
       <label for="inputPassword" class="sr-only">City</label>
-      <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+      <input name="password" type="password" id="inputPassword" class="<%= validationErrors.find(e=>e.param=='password')?'invalid form-control':'form-control' %>" placeholder="Password" required>
       <label for="inputPassword" class="sr-only">City</label>
-      <input name="cpassword" type="password" id="inputPassword" class="form-control" placeholder="Confirm Password" required>
+      <input name="cpassword" type="password" id="inputPassword" class="<%= validationErrors.find(e=>e.param=='cpassword')?'invalid form-control':'form-control' %>" placeholder="Confirm Password" required>
       <button class="btn btn-lg btn-success btn-block" type="submit">SignUp</button>
       <a href="/loginemployee">SignUp as Employee</a>
     </form>

@@ -1,5 +1,6 @@
 const {validationResult} = require('express-validator')
 const User = require('../models/user');
+const Store = require('../models/stores');
 const bcrypt = require('bcryptjs')
 
 const fetch = require('node-fetch');
@@ -42,6 +43,19 @@ exports.postlogins = (req,res,next)=>{
             {
                 req.session.isLoggedIn=true;
                 req.user=user;
+                let lt = user.address.latitude;
+                let lg = user.address.longitude;
+                console.log(lt,lg);
+                Store.find({location:{$near:{$geometry:{type:"Point",coordinates:[lt,lg]},$maxDistance:1000}}})
+                .then(result=>{
+                    console.log("Hello1")
+                    console.log("Hello1")
+                    console.log("Hello1")
+                    console.log("Hello1")
+                    console.log("Hello1")
+                    console.log(result);
+                })
+                .catch(err=>console.log(err))
                 return res.render('store/items');
             }
             return res.render('auth/login',{

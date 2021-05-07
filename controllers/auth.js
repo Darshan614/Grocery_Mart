@@ -42,26 +42,21 @@ exports.postlogins = (req,res,next)=>{
             if(match)
             {
                 req.session.isLoggedIn=true;
-                req.user=user;
-                let lt = user.address.latitude;
-                let lg = user.address.longitude;
-                console.log(lt,lg);
-                Store.find({location:{$near:{$geometry:{type:"Point",coordinates:[lt,lg]},$maxDistance:1000}}})
-                .then(result=>{
-                    console.log("Hello1")
-                    console.log("Hello1")
-                    console.log("Hello1")
-                    console.log("Hello1")
-                    console.log("Hello1")
-                    console.log(result);
+                req.session.user=user;
+                console.log(user);
+                return req.session.save(err=>{
+                    console.log(err);
+                    res.redirect('/');
                 })
-                .catch(err=>console.log(err))
-                return res.render('store/items');
+                
             }
-            return res.render('auth/login',{
-                errormessage:'Invalid email or password',
-                validationErrors:[]
-            })
+            else{
+                return res.render('auth/login',{
+                    errormessage:'Invalid email or password',
+                    validationErrors:[]
+                })
+            }
+            
         })
         .catch(err=>console.log(err))
     })

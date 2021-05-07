@@ -22,6 +22,18 @@ const storeSchema = new Schema({
                 price:{type:Number}
             }
         ]
+    },
+    mail:{
+        type:String,
+        require:true
+    },
+    storePIN:{
+        type:String,
+        require:true
+    },
+    rating:{
+        type:Number,
+        require:true
     }
 })
 

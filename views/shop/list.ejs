@@ -26,8 +26,9 @@
             </div>
             <div >
                 
-                <form action="/" method="GET">
-                <button type="submit" class="btn btn-warning view">View</button></form>
+                <form action="/items" method="POST">
+                <input type="hidden" name="storePIN" value="<%= store.storePIN %>" >
+                <input type="submit" value="View" class="btn btn-warning view"></form>
                 
             </div>
             
